@@ -32,3 +32,12 @@ def get_pets_by_breed(pet_shop, pet_breed):
             num_pets.append(pet)
     return num_pets
 
+# find pet by their name - similar to above, except we want to return None instead of 0
+def find_pet_by_name(pet_shop, pet_name):
+    pet_by_name = None
+    for pet in pet_shop["pets"]:
+        if pet["name"] == pet_by_name:
+            pet_by_name = pet
+    return pet_by_name
+
+
