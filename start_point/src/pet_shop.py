@@ -50,7 +50,7 @@ def remove_pet_by_name(pet_shop, pet_name):
 def add_pet_to_stock(pet_shop, new_pet):
     pet_shop["pets"].append(new_pet)
 
-# return the customer cash
+# return the customers cash total
 def get_customer_cash(customers):
     return customers["cash"]
 
@@ -72,3 +72,21 @@ def customer_can_afford_pet(customers, customer_funds):
         return True
     else:
         return False
+
+# sell a pet to a customer! 
+# First check to see if the pet is in the inventory, then checking if the customer has the funds to buy it.
+def sell_pet_to_customer(pet_shop, pet, customer):
+    if pet and customer_can_afford_pet(customer, pet):
+        # now we know the pet of that name is in stock and affordable, complete a sale: 
+        # take cash, add cash to shop total, add to customers order history/details and remove pet from shop inventory
+        get_customer_cash(customer)
+        remove_customer_cash(customer, pet["price"])
+        add_or_remove_cash(pet_shop, pet["price"])
+        get_total_cash(pet_shop)
+        get_customer_pet_count(customer)
+        add_pet_to_customer(customer, pet)
+        remove_pet_by_name(pet_shop, pet["name"])
+        get_pets_sold(pet_shop)
+        increase_pets_sold (pet_shop, 1)
+# could add error messages so that if pet details incorrect or insufficient funds, they know why sale didn't process.
+
